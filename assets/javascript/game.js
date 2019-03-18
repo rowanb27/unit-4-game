@@ -31,6 +31,7 @@ $(document).ready(function() {
     };
       var currSelectionCharacter;
       var combatants = [];
+      var currDefender;
 
       var renderOne = function(character, renderArea, charStatus) {
           var charDiv = $("<div class='character' data-name'" + character.name + "'>");
@@ -71,6 +72,15 @@ $(document).ready(function() {
                       $(this).hide();
                   }
               });
+          }
+
+          if (areaRender === "#defender") {
+              $(areaRender).empty();
+              for (var i = 0; i < combatants.length; i++) {
+                  if(combatants[i].name === charObj) {
+                      renderOne(combatants[i], areaRender, "defender");
+                  }
+              }
           }
       };
 
