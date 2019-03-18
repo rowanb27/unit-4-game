@@ -29,14 +29,19 @@ $(document).ready(function() {
             enamyAttackBack: 25
         }
     };
-      console.log(characters);
+      var currSelectionCharacter;
+      var combatants = [];
 
-      var renderOne = function(character, renderArea) {
+      var renderOne = function(character, renderArea, charStatus) {
           var charDiv = $("<div class='character' data-name'" + character.name + "'>");
           var charName = $("<div class='character-name'>").text(character.name);
           var charImage = $("<img atl='image' class='character-image'>").attr("src", character.imageUrl);
           charDiv.append(charName).append(charImage).append(charHealth);
           $(renderArea).append(charDiv);
+
+          if (charStatus === "enemy") {
+              $(charDiv).addClass("enemy");
+          }
       }
 
       var renderCharacters = function(charObj, areaRender) {
@@ -44,11 +49,38 @@ $(document).ready(function() {
               $(areaRender).empty();
               for (var key in charObj) {
                   if(charObj.hasOwnProperty(key)) {
-                      renderOne(charObj[key], areaRender);
+                      renderOne(charObj[key], areaRender, "");
                   }
+              }
+          }
+
+          if (areaRender === "#selected-character") {
+              renderOne(charObj, areaRender, "");
+          }
+
+          if (areaRender === "#available-to-attack-section") {
+              for (var i = 0; i < charObj.length; i++) {
+                  renderOne(charObj[i], areaRender, "");
               }
           }
       }
 
-     
+      renderCharacters(characters, "#characters-section");
+
+      $(document).on("click", ".character", function() {
+          var name = $(this).attr("data-name");
+          if (!currSelectionCharacter) {
+              currSelectionCharacter = characters[name];
+              for (var key in characters) {
+                  if (key !== characters) {
+                      combatants.push(characters[key]);
+                  }
+              }
+
+            $("#character-section").hide();
+
+            renderCharacters(currSelectionCharacter, "#selected-character");
+            renderCharacters(combatants, "available-to-attack-section");
+          }
+      });
 });
