@@ -1,9 +1,21 @@
 body {
-   background: url("../images/Final\ Destination.jpg") no-repeat center center fixed;
+   background: url("../images/Final\ Destination.jpg");
    background-color: black;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-attachment: fixed;
+   font-family: 'Times New Roman', Times, serif;
 }
 
-#header {
-   padding-top: 2%;
-   font: 190% bold;
+.main-section-title {
+   font-size: 300%;
+   text-align: center;
 }
+
+.section-title {
+   font-size: 200%;
+}
+
+
+
+
