@@ -1,0 +1,9 @@
+body {
+   background: url("../images/Final\ Destination.jpg") no-repeat center center fixed;
+   background-color: black;
+}
+
+#header {
+   padding-top: 2%;
+   font: 190% bold;
+}
