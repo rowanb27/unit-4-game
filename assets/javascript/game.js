@@ -62,8 +62,17 @@ $(document).ready(function() {
               for (var i = 0; i < charObj.length; i++) {
                   renderOne(charObj[i], areaRender, "");
               }
+
+              $(document).on("click", ".enemy", function() {
+                  var name = ($(this).attr("data-name"));
+
+                  if ($("#defender").children().length === 0) {
+                      renderCharacters(name, "#defender");
+                      $(this).hide();
+                  }
+              });
           }
-      }
+      };
 
       renderCharacters(characters, "#characters-section");
 
